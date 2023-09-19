@@ -40,12 +40,13 @@ export async function restoreImpl(
         );
         const failOnCacheMiss = utils.getInputAsBool(Inputs.FailOnCacheMiss);
         const lookupOnly = utils.getInputAsBool(Inputs.LookupOnly);
+        const downloadConcurrency = utils.getInputAsInt(Inputs.DownloadConcurrency);
 
         const cacheKey = await cache.restoreCache(
             cachePaths,
             primaryKey,
             restoreKeys,
-            { lookupOnly: lookupOnly },
+            { lookupOnly, downloadConcurrency },
             enableCrossOsArchive
         );
 
